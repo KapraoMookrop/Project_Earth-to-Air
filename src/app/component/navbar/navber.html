@@ -6,12 +6,12 @@
     </a>
   </div>
 
-  <!-- Hamburger (mobile) -->
-  <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
-    <i class="fa-solid fa-bars"></i>
+  <button class="menu-toggle" [class.open]="isMenuOpen" (click)="isMenuOpen = !isMenuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 
-  <!-- Menu -->
   <div class="menu" [class.open]="isMenuOpen">
     <div class="menu-item" routerLinkActive="active">
       <a routerLink="/dashboard" (click)="isMenuOpen=false" class="btn">
