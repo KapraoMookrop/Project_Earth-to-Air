@@ -4,15 +4,13 @@ import { NgClass } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-navbar',
-  imports: [FormsModule, NgClass],
+  selector: 'app-analytics',
+  imports: [FormsModule],
   providers: [],
-  templateUrl: './navber.html',
+  templateUrl: './analytics.html',
 })
-export class Navbar {
-  public IsLoading: boolean = false;
+export class Analytics {
   constructor() {
   }
-
 }
 
