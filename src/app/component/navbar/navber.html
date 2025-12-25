@@ -1,37 +1,40 @@
-@if(IsLoading){
-<div class="modal-loading">
-  <div class="loader"></div>
-</div>
-}
 <nav class="bg-white d-flex justify-content-between align-items-center container-fluid">
   <div class="navbar-brand">
-    <a href="#" class="d-flex align-items-center text-decoration-none">
-      <img src="img/logo/logo.png" alt="EarthToAir Logo" class="me-2" style="width: 60px;">
+    <a class="d-flex align-items-center text-decoration-none">
+      <img src="img/logo/logo.png" class="me-2" style="width: 60px;">
       <span class="h5 mb-0 text-dark">Earth-to-Air</span>
     </a>
   </div>
-  <div class="menu">
+
+  <!-- Hamburger (mobile) -->
+  <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- Menu -->
+  <div class="menu" [class.open]="isMenuOpen">
     <div class="menu-item" routerLinkActive="active">
-      <a routerLink="/dashboard" class="btn">
+      <a routerLink="/dashboard" (click)="isMenuOpen=false" class="btn">
         <i class="fa-solid fa-gauge"></i>
         <span class="ms-2">Dashboard</span>
       </a>
     </div>
     <div class="menu-item" routerLinkActive="active">
-      <a routerLink="/analytics" class="btn">
+      <a routerLink="/analytics" (click)="isMenuOpen=false" class="btn">
         <i class="fa-solid fa-chart-area"></i>
         <span class="ms-2">Analytics</span>
       </a>
     </div>
     <div class="menu-item" routerLinkActive="active">
-      <a routerLink="/settings" class="btn">
+      <a routerLink="/settings" (click)="isMenuOpen=false" class="btn">
         <i class="fa-solid fa-gear"></i>
         <span class="ms-2">Settings</span>
       </a>
     </div>
   </div>
-  <div class="time">
-    <span class="">Live : </span>
+
+  <div class="time d-none d-md-block">
+    <span>Live : </span>
     <span>{{ currentTime | date:'dd/MM/yyyy HH:mm' }}</span>
   </div>
 </nav>

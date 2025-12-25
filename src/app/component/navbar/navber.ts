@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class Navbar { 
   public IsLoading: boolean = false;
+  isMenuOpen = false;
   constructor() {
   }
 
