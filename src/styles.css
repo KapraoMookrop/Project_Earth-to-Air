@@ -3,10 +3,11 @@
 
 :root {
   --primary-blue: #2a52be;
-  --cooling-blue: #0ea5e9;
+  --cooling-wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww: #0ea5e9;
   --bg-light: rgb(241 245 249);
   --text-main: #0f172a;
   --text-menu: rgb(100 116 139);
+  --text-title: rgb(100 116 139);
   --text-menu-hover: rgb(51 65 85);
 }
 
@@ -170,70 +171,99 @@ nav {
   }
 }
 
+.modal-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
 .modal-loading .loader {
-  animation: rotate 1s infinite;
-  height: 50px;
-  width: 50px;
-}
+    animation: rotate 1s infinite;
+    height: 50px;
+    width: 50px;
+  }
 
-.modal-loading .loader:before,
-.modal-loading .loader:after {
-  border-radius: 50%;
-  content: '';
-  display: block;
-  height: 20px;
-  width: 20px;
-}
-.modal-loading .loader:before {
-  animation: ball1 1s infinite;
-  background-color: #fff;
-  box-shadow: 30px 0 0 #ff3d00;
-  margin-bottom: 10px;
-}
-.modal-loading .loader:after {
-  animation: ball2 1s infinite;
-  background-color: #ff3d00;
-  box-shadow: 30px 0 0 #fff;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg) scale(0.8);
+  .modal-loading .loader:before,
+  .modal-loading .loader:after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 20px;
+    width: 20px;
   }
-  50% {
-    transform: rotate(360deg) scale(1.2);
-  }
-  100% {
-    transform: rotate(720deg) scale(0.8);
-  }
-}
-
-@keyframes ball1 {
-  0% {
-    box-shadow: 30px 0 0 #ff3d00;
-  }
-  50% {
-    box-shadow: 0 0 0 #ff3d00;
-    margin-bottom: 0;
-    transform: translate(15px, 15px);
-  }
-  100% {
+  .modal-loading .loader:before {
+    animation: ball1 1s infinite;
+    background-color: #fff;
     box-shadow: 30px 0 0 #ff3d00;
     margin-bottom: 10px;
   }
+  .modal-loading .loader:after {
+    animation: ball2 1s infinite;
+    background-color: #ff3d00;
+    box-shadow: 30px 0 0 #fff;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg) scale(0.8) }
+    50% { transform: rotate(360deg) scale(1.2) }
+    100% { transform: rotate(720deg) scale(0.8) }
+  }
+
+  @keyframes ball1 {
+    0% {
+      box-shadow: 30px 0 0 #ff3d00;
+    }
+    50% {
+      box-shadow: 0 0 0 #ff3d00;
+      margin-bottom: 0;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #ff3d00;
+      margin-bottom: 10px;
+    }
+  }
+
+  @keyframes ball2 {
+    0% {
+      box-shadow: 30px 0 0 #fff;
+    }
+    50% {
+      box-shadow: 0 0 0 #fff;
+      margin-top: -20px;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #fff;
+      margin-top: 0;
+    }
+  }
+
+.card-status{
+  border-radius: 12px;
+  padding: 25px 15px;
+  border: 1px solid var(--bg-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
 }
 
-@keyframes ball2 {
-  0% {
-    box-shadow: 30px 0 0 #fff;
-  }
-  50% {
-    box-shadow: 0 0 0 #fff;
-    margin-top: -20px;
-    transform: translate(15px, 15px);
-  }
-  100% {
-    box-shadow: 30px 0 0 #fff;
-    margin-top: 0;
-  }
+.fs-title{
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-title);
+  transition: all 0.3s ease;
+}
+
+.fs-status{
+  font-size: 72px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }

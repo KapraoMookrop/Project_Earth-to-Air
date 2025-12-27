@@ -1,1 +1,22 @@
+@if(IsLoading){
+<div class="modal-loading">
+    <div class="loader"></div>
+</div>
+}
 <h1>Dashboard</h1>
+<div class="container-lg">
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="card-status">
+                <div class="d-flex flex-column gap-2 align-items-center">
+                    <span class="fs-title">คุณภาพอากาศ (PM 2.5)</span>
+                    <span class="fs-status" [style.color]="PM25Color">{{SensorData?.pm2_5}}</span>
+                    <span class="fs-title">MG/M <sup>3</sup></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-status"></div>
+        </div>
+    </div>
+</div>
