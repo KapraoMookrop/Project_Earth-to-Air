@@ -14,7 +14,7 @@ import { SensorAppService } from '../../API/SensorAppService';
 export class Dashboard {
   IsLoading: boolean = false;
 
-  get PM25Color(): string {
+  get getPM25Color(): string {
     if (!this.SensorData) return '#9CA3AF';
 
     const pm = this.SensorData.pm2_5;
@@ -25,6 +25,14 @@ export class Dashboard {
     if (pm <= 150.4) return '#EF4444';
     return '#9C27B0';
   }
+
+  get tempDiff(): number {
+    if (!this.SensorData) return 0;
+
+    const diff = this.SensorData.temp_ground - this.SensorData.temp_ambient;
+    return Math.round(diff * 100) / 100;
+  }
+
 
   SensorData: SensorData | null = null;
   constructor(private sensorAppService: SensorAppService) {

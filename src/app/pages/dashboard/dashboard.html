@@ -4,19 +4,70 @@
 </div>
 }
 <h1>Dashboard</h1>
-<div class="container-lg">
-    <div class="row">
-        <div class="col-md-4 ">
-            <div class="card-status">
-                <div class="d-flex flex-column gap-2 align-items-center">
-                    <span class="fs-title">คุณภาพอากาศ (PM 2.5)</span>
-                    <span class="fs-status" [style.color]="PM25Color">{{SensorData?.pm2_5}}</span>
-                    <span class="fs-title">MG/M <sup>3</sup></span>
+<div class="container-xxl">
+    <div class="row gx-3 gy-3">
+        <div class="col-lg-4">
+            <div class="card-status d-flex flex-column gap-2 align-items-center">
+                <span class="fs-title">คุณภาพอากาศ (PM 2.5)</span>
+                <span class="fs-status-large" [style.color]="getPM25Color">
+                    {{ SensorData?.pm2_5 }}
+                </span>
+                <span class="fs-title">MG/M <sup>3</sup></span>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card-status d-flex flex-column gap-2 align-items-center justify-content-between">
+                <div class="w-100 text-start">
+                    <span class="icon">
+                        <i class="fa-solid fa-temperature-high" style="color: #46baf0;"></i>
+                    </span>
+                    <span>ประสิทธิภาพการลดความร้อน</span>
+                </div>
+                <div class="d-flex flex-md-row flex-column justify-content-evenly w-100 gap-2">
+                    <div class="d-flex flex-column align-items-center justify-content-end">
+                        <span class="fs-title">อุณหภูมิภายนอก</span>
+                        <div class="text-gray">
+                            <span class="fs-status-medium">
+                                {{SensorData?.temp_ambient}}
+                            </span>
+                            <span class="fs-status-small">°C</span>
+                        </div>
+                    </div>
+
+                    <div class="animation d-flex flex-md-row flex-column  align-items-center justify-content-center gap-2">
+                        <div class="fan" [class.hot]="tempDiff > 0" [class.cool]="tempDiff <= 0">
+                            <i class="fa-solid fa-fan"></i>
+                        </div>
+                        <div class="flow-arrow" [class.hot]="tempDiff > 0" [class.cool]="tempDiff <= 0">
+                            <i class="fa-solid fa-arrow-right d-none d-md-block"></i>
+                            <i class="fa-solid fa-arrow-down d-md-none d-block"></i>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-center">
+                        <div class="d-flex flex-column align-items-center text-primary justify-content-end">
+                            <span class="fs-title">อุณหภูมิภายใน</span>
+                            <div>
+                                <span class="fs-status-large">
+                                    {{SensorData?.temp_ground}}
+                                </span>
+                                <span class="fs-status-small">°C</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center"
+                            [class]="tempDiff > 0 ? 'text-red' : 'text-green'">
+                            <span class="fs-title" [class]="tempDiff > 0 ? 'text-red' : 'text-green'">
+                                {{ tempDiff > 0 ? 'เพิ่มขึ้น' : 'ลดลง' }}
+                            </span>
+                            <span class="fs-status-small">
+                                {{ tempDiff }}°
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="card-status"></div>
-        </div>
+
     </div>
 </div>

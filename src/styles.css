@@ -3,21 +3,39 @@
 
 :root {
   --primary-blue: #2a52be;
-  --cooling-wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww: #0ea5e9;
-  --bg-light: rgb(241 245 249);
+  --bg-light: #f1f5f9;
+
   --text-main: #0f172a;
-  --text-menu: rgb(100 116 139);
-  --text-title: rgb(100 116 139);
-  --text-menu-hover: rgb(51 65 85);
+  --text-primary: #2a52be;
+  --text-gray: #64748b;
+  --text-green: #16a34a;
+  --text-red: #dc2626;
+  --text-menu: #64748b;
+  --text-title: #65758b;
+  --text-menu-hover: #334155;
 }
 
 body {
   font-family: 'Kanit', sans-serif !important;
+  background-color: var(--bg-light) !important;
 }
 
-/* =========================
-   NAVBAR BASE
-========================= */
+.text-gray {
+  color: var(--text-gray) !important;
+}
+
+.text-green {
+  color: var(--text-green) !important;
+}
+
+.text-red {
+  color: var(--text-red) !important;
+}
+
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
 nav {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -26,16 +44,26 @@ nav {
   z-index: 1000;
 }
 
-/* =========================
-   BRAND
-========================= */
+.nav-mobile {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-mobile .menu-mobile {
+  display: flex;
+  gap: 6px;
+  background-color: var(--bg-light);
+  border-radius: 10px;
+  padding: 5px;
+  align-items: center;
+}
+
 .navbar-brand a {
   color: inherit;
 }
 
-/* =========================
-   MENU (DESKTOP)
-========================= */
 .menu {
   display: flex;
   gap: 6px;
@@ -73,7 +101,8 @@ nav {
   color: #555;
   white-space: nowrap;
 }
-
+/* hamberger */
+/* 
 .menu-toggle {
   width: 32px;
   height: 24px;
@@ -116,49 +145,7 @@ nav {
 .menu-toggle.open span:nth-child(3) {
   transform: rotate(-45deg);
   bottom: 11px;
-}
-
-@media (max-width: 768px) {
-  nav {
-    flex-wrap: wrap;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .menu {
-    width: 100%;
-    flex-direction: column;
-    display: flex;
-    max-height: 0px;
-    padding: 0px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .menu.open {
-    margin-top: 10px;
-    padding: 8px;
-    max-height: 500px;
-    transition: all 0.3s ease;
-  }
-
-  .menu-item {
-    width: 100%;
-  }
-
-  .menu-item a {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .time {
-    width: 100%;
-    text-align: center;
-    margin-top: 8px;
-  }
-}
+} */
 
 @media (max-width: 480px) {
   .navbar-brand span {
@@ -172,98 +159,209 @@ nav {
 }
 
 .modal-loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
+/* Start Loaging */
 .modal-loading .loader {
-    animation: rotate 1s infinite;
-    height: 50px;
-    width: 50px;
-  }
+  animation: rotate 1s infinite;
+  height: 50px;
+  width: 50px;
+}
 
-  .modal-loading .loader:before,
-  .modal-loading .loader:after {
-    border-radius: 50%;
-    content: "";
-    display: block;
-    height: 20px;
-    width: 20px;
+.modal-loading .loader:before,
+.modal-loading .loader:after {
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.modal-loading .loader:before {
+  animation: ball1 1s infinite;
+  background-color: #fff;
+  box-shadow: 30px 0 0 #ff3d00;
+  margin-bottom: 10px;
+}
+.modal-loading .loader:after {
+  animation: ball2 1s infinite;
+  background-color: #ff3d00;
+  box-shadow: 30px 0 0 #fff;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(0.8);
   }
-  .modal-loading .loader:before {
-    animation: ball1 1s infinite;
-    background-color: #fff;
+  50% {
+    transform: rotate(360deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(720deg) scale(0.8);
+  }
+}
+
+@keyframes ball1 {
+  0% {
+    box-shadow: 30px 0 0 #ff3d00;
+  }
+  50% {
+    box-shadow: 0 0 0 #ff3d00;
+    margin-bottom: 0;
+    transform: translate(15px, 15px);
+  }
+  100% {
     box-shadow: 30px 0 0 #ff3d00;
     margin-bottom: 10px;
   }
-  .modal-loading .loader:after {
-    animation: ball2 1s infinite;
-    background-color: #ff3d00;
+}
+
+@keyframes ball2 {
+  0% {
     box-shadow: 30px 0 0 #fff;
   }
-
-  @keyframes rotate {
-    0% { transform: rotate(0deg) scale(0.8) }
-    50% { transform: rotate(360deg) scale(1.2) }
-    100% { transform: rotate(720deg) scale(0.8) }
+  50% {
+    box-shadow: 0 0 0 #fff;
+    margin-top: -20px;
+    transform: translate(15px, 15px);
   }
-
-  @keyframes ball1 {
-    0% {
-      box-shadow: 30px 0 0 #ff3d00;
-    }
-    50% {
-      box-shadow: 0 0 0 #ff3d00;
-      margin-bottom: 0;
-      transform: translate(15px, 15px);
-    }
-    100% {
-      box-shadow: 30px 0 0 #ff3d00;
-      margin-bottom: 10px;
-    }
+  100% {
+    box-shadow: 30px 0 0 #fff;
+    margin-top: 0;
   }
+}
+/* end loading */
 
-  @keyframes ball2 {
-    0% {
-      box-shadow: 30px 0 0 #fff;
-    }
-    50% {
-      box-shadow: 0 0 0 #fff;
-      margin-top: -20px;
-      transform: translate(15px, 15px);
-    }
-    100% {
-      box-shadow: 30px 0 0 #fff;
-      margin-top: 0;
-    }
+.fan {
+  font-size: 40px;
+  animation: spin 1.2s linear infinite;
+  scale: 1.4;
+}
+
+.fan.hot {
+  color: #dc3545;
+}
+
+.fan.cool {
+  color: #198754;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-.card-status{
+.flow-arrow {
+  font-size: 32px;
+  font-weight: bold;
+  animation: flow-horizontal 1.2s ease-in-out infinite;
+}
+
+.flow-arrow.hot {
+  color: #dc3545; /* red */
+}
+
+.flow-arrow.cool {
+  color: #198754; /* green */
+}
+
+@keyframes flow-horizontal {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+
+@media (max-width: 992px) {
+  .fs-status-large {
+    font-size: 48px !important;
+  }
+  .fs-status-medium {
+    font-size: 36px !important;
+  }
+  .fs-status-small {
+    font-size: 24px !important;
+  }
+}
+
+@media (max-width: 768px) {
+    .flow-arrow {
+    animation: flow-vertical 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes flow-vertical {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.card-status {
   border-radius: 12px;
   padding: 25px 15px;
   border: 1px solid var(--bg-light);
+  background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   height: 100%;
 }
 
-.fs-title{
+.card-status .icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.fs-title {
   font-size: 18px;
   font-weight: 500;
   color: var(--text-title);
   transition: all 0.3s ease;
 }
 
-.fs-status{
+.fs-status-large {
   font-size: 72px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.fs-status-medium {
+  font-size: 48px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.fs-status-small {
+  font-size: 24px;
   font-weight: 500;
   transition: all 0.3s ease;
 }

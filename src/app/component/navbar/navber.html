@@ -1,18 +1,19 @@
 <nav class="bg-white d-flex justify-content-between align-items-center container-fluid">
   <div class="navbar-brand">
     <a class="d-flex align-items-center text-decoration-none">
-      <img src="img/logo/logo.png" class="me-2" style="width: 60px;">
+      <img src="assets/logo/logo.png" class="me-2" style="width: 60px;">
       <span class="h5 mb-0 text-dark">Earth-to-Air</span>
     </a>
   </div>
+  
+  <!-- Hamberger Menu -->
+  <!-- <button class="menu-toggle" [class.open]="isMenuOpen" (click)="isMenuOpen = !isMenuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button> -->
 
-  <button class="menu-toggle" [class.open]="isMenuOpen" (click)="isMenuOpen = !isMenuOpen">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <div class="menu" [class.open]="isMenuOpen">
+  <div class="menu d-none d-md-flex">
     <div class="menu-item" routerLinkActive="active">
       <a routerLink="/dashboard" class="btn">
         <i class="fa-solid fa-gauge"></i>
@@ -38,3 +39,23 @@
     <span>{{ currentTime | date:'dd/MM/yyyy HH:mm' }}</span>
   </div>
 </nav>
+
+<div class="nav-mobile d-block d-md-none position-fixed">
+  <div class="menu-mobile">
+    <div class="menu-item" routerLinkActive="active">
+      <a routerLink="/dashboard" class="btn">
+        <i class="fa-solid fa-gauge"></i>
+      </a>
+    </div>
+    <div class="menu-item" routerLinkActive="active">
+      <a routerLink="/analytics" class="btn">
+        <i class="fa-solid fa-chart-area"></i>
+      </a>
+    </div>
+    <div class="menu-item" routerLinkActive="active">
+      <a routerLink="/settings" class="btn">
+        <i class="fa-solid fa-gear"></i>
+      </a>
+    </div>
+  </div>
+</div>
