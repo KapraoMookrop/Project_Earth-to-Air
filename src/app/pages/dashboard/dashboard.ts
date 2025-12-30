@@ -4,15 +4,21 @@ import { NgClass } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SensorData } from '../../types/SensorDate';
 import { SensorAppService } from '../../API/SensorAppService';
+import { InfoDialog } from '../../component/info-dialog/info-dialog';
+import { ConfigurationData } from '../../types/configurationData';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule],
+  imports: [FormsModule, InfoDialog],
   providers: [],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
   IsLoading: boolean = false;
+  dialogVisible = false;
+  dialogTitle = '';
+  dialogDescription = '';
+
 
   get getPM25Color(): string {
     if (!this.SensorData) return '#9CA3AF';
@@ -35,11 +41,13 @@ export class Dashboard {
 
 
   SensorData: SensorData | null = null;
+  ConfigurationData: ConfigurationData[] = [];
   constructor(private sensorAppService: SensorAppService) {
   }
 
   ngOnInit() {
     this.SearchData();
+    this.SearchInfo();
   }
 
   async SearchData() {
@@ -52,6 +60,30 @@ export class Dashboard {
       this.IsLoading = false;
     }
   }
+  
+  async SearchInfo (){
+    this.IsLoading = true;
+    try {
+      const infoData = await this.sensorAppService.GetInfo();
+      this.ConfigurationData = infoData;
+    } catch (err) {
+      console.error('Error fetching configuration data:', err);
+    } finally {
+      this.IsLoading = false;
+    }
+  }
+
+  openInfo(codeInfo: string, header: string) {
+    const info = this.ConfigurationData.find(item => item.code == codeInfo);
+    if (info) {
+      this.dialogTitle = header;
+      this.dialogDescription = info.value;
+      this.dialogVisible = true;
+    }
+  }
+
+  closeDialog() {
+    this.dialogVisible = false;
+  }
 
 }
-

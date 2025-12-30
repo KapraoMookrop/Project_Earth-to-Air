@@ -7,22 +7,40 @@
     <div class="row gx-3 gy-3">
         <div class="col-lg-4">
             <div class="card-status d-flex flex-column gap-2 align-items-center">
-                <span class="fs-title">คุณภาพอากาศ (PM 2.5)</span>
+                <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <span class="icon fs-title">
+                            <i class="fa-brands fa-cloudversify"></i>
+                        </span>
+                        <span class="fs-title">คุณภาพอากาศ (PM 2.5)</span>
+                    </div>
+                    <div class="fs-title" (click)="openInfo('Info_PM', 'คุณภาพอากาศ (PM 2.5)')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
                 <span class="fs-status-large" [style.color]="getPM25Color">
                     {{ SensorData?.pm2_5 }}
                 </span>
-                <span class="fs-title">MG/M <sup>3</sup></span>
+                <span class="fs-title">µg/m <sup>3</sup></span>
             </div>
         </div>
 
         <div class="col-lg-8">
             <div class="card-status d-flex flex-column gap-2 align-items-center justify-content-between">
-                <div class="w-100 text-start">
-                    <span class="icon">
-                        <i class="fa-solid fa-temperature-high" style="color: #46baf0;"></i>
-                    </span>
-                    <span>ประสิทธิภาพการลดความร้อน</span>
+                <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="w-100 text-start align-middle">
+                            <span class="icon">
+                                <i class="fa-solid fa-temperature-high" style="color: #46baf0;"></i>
+                            </span>
+                            <span>ประสิทธิภาพการลดความร้อน</span>
+                        </div>
+                    </div>
+                    <div class="fs-title" (click)="openInfo('Info_PM', 'ประสิทธิภาพการลดความร้อน')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
                 </div>
+
                 <div class="d-flex flex-md-row flex-column justify-content-evenly w-100 gap-2">
                     <div class="d-flex flex-column align-items-center justify-content-end">
                         <span class="fs-title">อุณหภูมิภายนอก</span>
@@ -34,7 +52,8 @@
                         </div>
                     </div>
 
-                    <div class="animation d-flex flex-md-row flex-column  align-items-center justify-content-center gap-2">
+                    <div
+                        class="animation d-flex flex-md-row flex-column  align-items-center justify-content-center gap-2">
                         <div class="fan" [class.hot]="tempDiff > 0" [class.cool]="tempDiff <= 0">
                             <i class="fa-solid fa-fan"></i>
                         </div>
@@ -67,6 +86,98 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="row mt-3 gx-3 gy-3">
+        <div class="col-lg-3 col-6">
+            <div class="card-status d-flex flex-column gap-2 align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <span class="icon fs-title">
+                            <i class="fa-brands fa-cloudversify"></i>
+                        </span>
+                        <span class="fs-title">PM 1.0</span>
+                    </div>
+                    <div class="fs-title" (click)="openInfo('Info_PM', 'PM 1.0')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="fs-status-medium">
+                        {{ SensorData?.pm1_0 }}
+                    </span>
+                    <span class="fs-title">µg/m<sup>3</sup></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="card-status d-flex flex-column gap-1 align-items-start">
+                <div class="d-flex justify-content-between w-100">
+                    <div class="d-flex align-items-center">
+                        <span class="icon fs-title" style="color: #60a5fa;">
+                            <i class="fa-solid fa-droplet"></i>
+                        </span>
+                        <span class="fs-title" style="color: #60a5fa;">ความชื้น</span>
+                    </div>
+                    <div class="fs-title" (click)="openInfo('Info_Humidity', 'ความชื้น')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="fs-status-medium">
+                        {{ SensorData?.humidity }}
+                    </span>
+                    <span class="fs-title">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="card-status d-flex flex-column gap-2 align-items-start">
+                <div class="d-flex justify-content-between w-100">
+                    <div class="d-flex align-items-center">
+                        <span class="icon fs-title" style="color: #c084fc;">
+                            <i class="fa-solid fa-shield-virus"></i>
+                        </span>
+                        <span class="fs-title" style="color: #c084fc;">VOCs</span>
+                    </div>
+                    <div class="fs-title" (click)="openInfo('Info_VOCs', 'สารระเหยและเชื้อโรค')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="fs-status-medium">
+                        {{ SensorData?.voc_level }}
+                    </span>
+                    <span class="fs-title">ppm</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="card-status d-flex flex-column gap-2 align-items-start">
+                <div class="d-flex justify-content-between w-100">
+                    <div class="d-flex align-items-center">
+                        <span class="icon fs-title" style="color: #06b6d4;">
+                            <i class="fa-solid fa-wind"></i>
+                        </span>
+                        <span class="fs-title" style="color: #06b6d4;">ความเร็วลม</span>
+                    </div>
+                    <div class="fs-title" (click)="openInfo('Info_WindSpeed', 'ความเร็วลม')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="fs-status-medium">
+                        {{ SensorData?.wind_speed }}
+                    </span>
+                    <span class="fs-title">m/s</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<div style="height: 60px;">
+</div>
+
+<app-info-dialog [visible]="dialogVisible" [title]="dialogTitle" [description]="dialogDescription"
+    (close)="closeDialog()">
+</app-info-dialog>

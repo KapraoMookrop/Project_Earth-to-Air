@@ -1,0 +1,15 @@
+
+<div class="dialog-backdrop" (click)="onClose()" [class.active]="visible"></div>
+<div class="dialog" [class.active]="visible">
+  <div class="dialog-content">
+    <div class="dialog-header">
+      <span class="fs-header">{{ title }}</span>
+      <button class="btn-close" (click)="onClose()"></button>
+    </div>
+  
+    <div class="dialog-body">
+      <span class="fs-title">{{ description }}</span>
+    </div>
+  </div>
+</div>
+

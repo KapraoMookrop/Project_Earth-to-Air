@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { SensorData } from '../types/SensorDate';
 import { SettingsData } from '../types/SettingsData';
+import { ConfigurationData } from '../types/configurationData';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,15 @@ export class SensorAppService {
     async GetLatestSensor(deviceId: string): Promise<SensorData> {
         const observable = this.http.get<SensorData>(
             `${this.baseUrl}/api/latest/${deviceId}`
+        );
+
+        const response = await lastValueFrom(observable);
+        return response;
+    }
+
+    async GetInfo(): Promise<ConfigurationData[]> {
+        const observable = this.http.get<ConfigurationData[]>(
+            `${this.baseUrl}/api/info`
         );
 
         const response = await lastValueFrom(observable);
