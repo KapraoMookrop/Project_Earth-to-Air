@@ -2,7 +2,7 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 :root {
-  --primary-blue: #2a52be;
+  --primary-blue: #3887ff;
   --bg-light: #f1f5f9;
 
   --text-main: #0f172a;
@@ -373,6 +373,7 @@ nav {
   font-size: 72px;
   font-weight: 500;
   cursor: default;
+  color: var(--text-title);
   transition: all 0.3s ease;
 }
 
@@ -380,6 +381,7 @@ nav {
   font-size: 48px;
   font-weight: 500;
   cursor: default;
+  color: var(--text-title);
   transition: all 0.3s ease;
 }
 
@@ -387,6 +389,7 @@ nav {
   font-size: 24px;
   font-weight: 500;
   cursor: default;
+  color: var(--text-title);
   transition: all 0.3s ease;
 }
 
@@ -458,4 +461,25 @@ nav {
 .dialog .dialog-content .dialog-body {
   padding: 16px;
   font-size: 14px;
+}
+
+.card-status .type-value .type-value-item {
+  background-color: var(--bg-light);
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card-status .type-value .type-value-item:hover {
+  background-color: var(--primary-blue);
+  color: var(--bg-light);
+}
+.card-status .type-value .type-value-item.active {
+  background-color: var(--primary-blue);
+  color: var(--bg-light);
 }

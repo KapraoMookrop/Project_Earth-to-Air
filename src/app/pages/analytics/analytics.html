@@ -1,1 +1,71 @@
-<h1>Analytics</h1>
+@if(IsLoading){
+<div class="modal-loading">
+    <div class="loader"></div>
+</div>
+}
+
+<div class="card-status">
+    <div class="row justify-content-between align-items-center mb-3">
+        <div class="d-flex gap-2 align-items-center col-md-3 fs-status-medium">
+            <i class="fa-solid fa-chart-column" style="color: var(--primary-blue);"></i>
+            <span>สถิติ</span>
+        </div>
+        <div class="type-value col-md-9 row gy-2">
+            <div class="col-lg-2 col-md-4" (click)="onMetricChange('temp')">
+                <div class="type-value-item fs-title" [class.active]="selectedValue == 'temp'">
+                    <i class="fa-solid fa-temperature-high"></i>
+                    อุุณหภูมิ
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4" (click)="onMetricChange('pm25')">
+                <div class="type-value-item fs-title" [class.active]="selectedValue == 'pm25'">
+                    <i class="fa-brands fa-cloudversify"></i>
+                    PM2.5
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4" (click)="onMetricChange('pm10')">
+                <div class="type-value-item fs-title" [class.active]="selectedValue == 'pm10'">
+                    <i class="fa-brands fa-cloudversify"></i>
+                    PM1.0
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4" (click)="onMetricChange('voc')">
+                <div class="type-value-item fs-title" [class.active]="selectedValue == 'voc'">
+                    <i class="fa-solid fa-shield-virus"></i>
+                    VOCs/AOC
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4" (click)="onMetricChange('wind')">
+                <div class="type-value-item fs-title" [class.active]="selectedValue == 'wind'">
+                    <i class="fa-solid fa-wind"></i>
+                    ความเร็วลม
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4" (click)="onMetricChange('humidity')">
+                <div class="type-value-item fs-title" [class.active]="selectedValue === 'humidity'">
+                    <i class="fa-solid fa-droplet"></i>
+                    ความชื้น
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-group mb-3">
+        <button class="btn btn-outline-primary" [class.active]="selectedRange === '1'" (click)="onRangeChange('1')">
+            รายวัน
+        </button>
+        <button class="btn btn-outline-primary" [class.active]="selectedRange === '2'" (click)="onRangeChange('2')">
+            รายชั่วโมง
+        </button>
+    </div>
+
+    @if(!IsLoading){
+    <apx-chart [series]="series" [chart]="chart" [xaxis]="xaxis" [stroke]="stroke" [tooltip]="tooltip"
+        [markers]="markers" [yaxis]="yaxis" , [fill]="fill" [colors]="colors">
+    </apx-chart>
+    }
+
+    <div class="text-center">
+        <span class="fs-title">ข้อมูลล่าสุด: {{ rawData.length > 0 ? (rawData[rawData.length - 1]?.time | date:'dd MMMM yyyy เวลา HH:mm:ss') : 'ไม่มีข้อมูล' }}</span>
+    </div>
+</div>

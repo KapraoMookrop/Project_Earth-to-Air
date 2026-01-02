@@ -64,13 +64,13 @@
                     </div>
 
                     <div class="d-flex gap-2 justify-content-center">
-                        <div class="d-flex flex-column align-items-center text-primary justify-content-end">
+                        <div class="d-flex flex-column align-items-center justify-content-end">
                             <span class="fs-title">อุณหภูมิภายใน</span>
                             <div>
-                                <span class="fs-status-large">
+                                <span class="fs-status-large text-primary">
                                     {{SensorData?.temp_ground}}
                                 </span>
-                                <span class="fs-status-small">°C</span>
+                                <span class="fs-status-small text-primary">°C</span>
                             </div>
                         </div>
                         <div class="d-flex flex-column align-items-center"
@@ -78,7 +78,7 @@
                             <span class="fs-title" [class]="tempDiff > 0 ? 'text-red' : 'text-green'">
                                 {{ tempDiff > 0 ? 'เพิ่มขึ้น' : 'ลดลง' }}
                             </span>
-                            <span class="fs-status-small">
+                            <span class="fs-status-small" [class]="tempDiff > 0 ? 'text-red' : 'text-green'">
                                 {{ tempDiff }}°
                             </span>
                         </div>

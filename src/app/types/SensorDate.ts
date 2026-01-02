@@ -7,4 +7,5 @@ export interface SensorData {
   pm2_5: number;
   voc_level: number;
   wind_speed: number;
+  time: Date;
 }

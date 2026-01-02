@@ -41,13 +41,10 @@ export class SensorAppService {
         return response;
     }
 
-    async GetSensorHistory(
-        deviceId: string,
-        hours: number = 24
-    ): Promise<SensorData[]> {
+    async GetSensorHistory(deviceId: string, typeRange: string): Promise<SensorData[]> {
 
         const observable = this.http.get<SensorData[]>(
-            `${this.baseUrl}/api/history/${deviceId}?hours=${hours}`
+            `${this.baseUrl}/api/history/${deviceId}/${typeRange}`
         );
 
         const response = await lastValueFrom(observable);
