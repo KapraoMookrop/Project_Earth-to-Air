@@ -6,7 +6,7 @@
   --bg-light: #f1f5f9;
 
   --text-main: #0f172a;
-  --text-primary: #2a52be;
+  --text-primary: #3887ff;
   --text-gray: #64748b;
   --text-green: #16a34a;
   --text-red: #dc2626;
@@ -32,7 +32,7 @@ body {
   color: var(--text-red) !important;
 }
 
-.text-primary {
+.color-primary {
   color: var(--text-primary) !important;
 }
 
@@ -311,6 +311,9 @@ nav {
   .fs-title {
     font-size: 14px !important;
   }
+  .fs-small {
+    font-size: 12px !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -364,6 +367,13 @@ nav {
 .fs-title {
   font-size: 18px;
   font-weight: 500;
+  color: var(--text-title);
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.fs-small {
+  font-size: 14px;
   color: var(--text-title);
   cursor: default;
   transition: all 0.3s ease;
@@ -482,4 +492,32 @@ nav {
 .card-status .type-value .type-value-item.active {
   background-color: var(--primary-blue);
   color: var(--bg-light);
+}
+
+.filter-status .header {
+  background-color: var(--text-main);
+  border-radius: 10px 10px 0 0;
+  padding: 8px 12px;
+}
+
+.filter-status .body {
+  border:  1px solid var(--text-main);
+  padding: 12px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+.filter-status .line-base .line-status{
+  height: 15px;
+}
+
+.filter-status .line-base{
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #dbdbdb;
+  margin-top: 6px;
+}
+
+.filter-status .fa-gear{
+  font-size: 18px;
+  animation: spin 1.2s linear infinite;
 }

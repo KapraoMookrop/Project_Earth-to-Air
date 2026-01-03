@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SensorData } from '../../types/SensorDate';
 import { SensorAppService } from '../../API/SensorAppService';
 import { InfoDialog } from '../../component/info-dialog/info-dialog';
 import { ConfigurationData } from '../../types/configurationData';
+import { SettingsData } from '../../types/SettingsData';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule, InfoDialog],
+  imports: [FormsModule, InfoDialog, CommonModule],
   providers: [],
   templateUrl: './dashboard.html',
 })
@@ -39,21 +40,39 @@ export class Dashboard {
     return Math.round(diff * 100) / 100;
   }
 
+  get getFilterStatus(): number{
+    if(this.SensorData != null && this.SettingsData != null){
+      return (this.SensorData.wind_speed / this.SettingsData.wind_speed_baseline) * 100;
+    }
+    return 0; 
+  }
+
+  get getFilterStatusColor(): string {
+    const status = this.getFilterStatus;
+    if (status >= 80) return '#10B981';
+    if (status >= 60) return '#F1C40F ';
+    if (status >= 40) return '#E67E22 ';
+    return '#EF4444';
+  }
+
 
   SensorData: SensorData | null = null;
   ConfigurationData: ConfigurationData[] = [];
+  SettingsData: SettingsData | null = null;
   constructor(private sensorAppService: SensorAppService) {
   }
 
   ngOnInit() {
     this.SearchData();
     this.SearchInfo();
+    this.SearchSettings();
   }
 
   async SearchData() {
     this.IsLoading = true;
     try {
-      this.SensorData = await this.sensorAppService.GetLatestSensor('esp32_001');
+      const result = await this.sensorAppService.GetLatestSensor('esp32_001');
+      this.SensorData = result;
     } catch (err) {
       console.error('Error fetching sensor data:', err);
     } finally {
@@ -64,10 +83,22 @@ export class Dashboard {
   async SearchInfo (){
     this.IsLoading = true;
     try {
-      const infoData = await this.sensorAppService.GetInfo();
-      this.ConfigurationData = infoData;
+      const result = await this.sensorAppService.GetInfo();
+      this.ConfigurationData = result;
     } catch (err) {
       console.error('Error fetching configuration data:', err);
+    } finally {
+      this.IsLoading = false;
+    }
+  }
+
+  async SearchSettings (){
+    this.IsLoading = true;
+    try {
+      const result = await this.sensorAppService.GetSettingData('esp32_001');
+      this.SettingsData = result;
+    } catch (err) {
+      console.error('Error fetching settings data:', err);
     } finally {
       this.IsLoading = false;
     }

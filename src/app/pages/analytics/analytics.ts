@@ -26,6 +26,9 @@ export class Analytics {
   selectedValue = 'temp';
   selectedRange = '1';
   graphColor = '#FF5733';
+  maximumValue: number = 0;
+  minimumValue: number = 0;
+  avgValue: number = 0;
 
   rawData: SensorData[] = [];
 
@@ -85,10 +88,10 @@ export class Analytics {
   }
 
   ngOnInit() {
-    this.fetchData();
+    this.SearchData();
   }
 
-  async fetchData() {
+  async SearchData() {
     this.IsLoading = true;
     try {
       this.rawData = await this.sensorAppService.GetSensorHistory('esp32_001', this.selectedRange);
@@ -102,6 +105,11 @@ export class Analytics {
   updateChart() {
     const metric = this.metricMap[this.selectedValue];
     this.colors = [metric.color];
+
+    const values = this.rawData.map(d => Number((d as any)[metric.key]));
+    this.maximumValue = Math.max(...values);
+    this.minimumValue = Math.min(...values);
+    this.avgValue = values.reduce((a, b) => a + b, 0) / values.length;
 
     this.series = [
       {
@@ -123,6 +131,6 @@ export class Analytics {
 
   onRangeChange(typeRange: string) {
     this.selectedRange = typeRange;
-    this.fetchData();
+    this.SearchData();
   }
 }

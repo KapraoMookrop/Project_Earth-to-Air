@@ -14,7 +14,7 @@
             <div class="col-lg-2 col-md-4" (click)="onMetricChange('temp')">
                 <div class="type-value-item fs-title" [class.active]="selectedValue == 'temp'">
                     <i class="fa-solid fa-temperature-high"></i>
-                    อุุณหภูมิ
+                    อุุณหภูมิภายนอก
                 </div>
             </div>
             <div class="col-lg-2 col-md-4" (click)="onMetricChange('pm25')">
@@ -59,6 +59,27 @@
         </button>
     </div>
 
+    <div class="row gy-2">
+        <div class="col-md-4">
+            <div class="card-status d-flex flex-column align-items-center">
+                <span>ค่าสูงสุด</span>
+                <span class="fs-status-medium">{{ maximumValue | number:'1.2-2' }}</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-status d-flex flex-column align-items-center">
+                <span>ค่าเฉลี่ย</span>
+                <span class="fs-status-medium">{{ avgValue | number:'1.2-2' }}</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-status d-flex flex-column align-items-center">
+                <span>ค่าต่ำสุด</span>
+                <span class="fs-status-medium">{{ minimumValue | number:'1.2-2' }}</span>
+            </div>
+        </div>
+    </div>
+
     @if(!IsLoading){
     <apx-chart [series]="series" [chart]="chart" [xaxis]="xaxis" [stroke]="stroke" [tooltip]="tooltip"
         [markers]="markers" [yaxis]="yaxis" , [fill]="fill" [colors]="colors">
@@ -68,4 +89,6 @@
     <div class="text-center">
         <span class="fs-title">ข้อมูลล่าสุด: {{ rawData.length > 0 ? (rawData[rawData.length - 1]?.time | date:'dd MMMM yyyy เวลา HH:mm:ss') : 'ไม่มีข้อมูล' }}</span>
     </div>
+</div>
+<div style="height: 60px;">
 </div>

@@ -173,6 +173,31 @@
             </div>
         </div>
     </div>
+    <div class="filter-status mt-3">
+        <div class="header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <div class="d-flex flex-column">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-gear" style="color: var(--primary-blue);"></i>
+                        <span class="fs-title text-white">สุขภาพไส้กรอง</span>
+                    </div>
+                    <div class="text-white fs-small">
+                        หลอดแสดงสถานะสุขภาพไส้กรองใช้สำหรับบอกระดับประสิทธิภาพการทำงานของไส้กรองอากาศในรูปแบบเปอร์เซ็นต์ โดยค่าที่แสดงยิ่งสูง แสดงว่าไส้กรองยังอยู่ในสภาพดีและสามารถกรองอากาศได้อย่างมีประสิทธิภาพ
+                        <i class="fa-solid fa-circle-info ms-1" (click)="openInfo('Info_filter', 'สถานะไส้กรอง')"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="fs-status-small color-primary">
+                {{ getFilterStatus }}%
+            </div>
+    
+        </div>
+        <div class="body">
+            <div class="line-base">
+                <div class="line-status" [style.width.%]="getFilterStatus" [style.background-color]="getFilterStatusColor"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div style="height: 60px;">
