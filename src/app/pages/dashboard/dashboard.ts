@@ -49,9 +49,9 @@ export class Dashboard {
 
   get getFilterStatusColor(): string {
     const status = this.getFilterStatus;
-    if (status >= 80) return '#10B981';
-    if (status >= 60) return '#F1C40F ';
-    if (status >= 40) return '#E67E22 ';
+    if (status >= 70) return '#10B981';
+    if (status >= 50) return '#F1C40F ';
+    if (status >= 30) return '#E67E22 ';
     return '#EF4444';
   }
 
