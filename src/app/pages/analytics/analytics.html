@@ -10,7 +10,7 @@
             <i class="fa-solid fa-chart-column" style="color: var(--primary-blue);"></i>
             <span>สถิติ</span>
         </div>
-        <div class="type-value col-md-9 row gy-2">
+        <div class="type-value col-md-9 row gy-2 d-none d-md-flex">
             <div class="col-lg-2 col-md-4" (click)="onMetricChange('temp')">
                 <div class="type-value-item fs-title" [class.active]="selectedValue == 'temp'">
                     <i class="fa-solid fa-temperature-high"></i>
@@ -49,17 +49,29 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="btn-group">
+            <button class="btn btn-sm btn-outline-primary" [class.active]="selectedRange === '1'" (click)="onRangeChange('1')">
+                รายวัน
+            </button>
+            <button class="btn btn-sm btn-outline-primary" [class.active]="selectedRange === '2'" (click)="onRangeChange('2')">
+                รายชั่วโมง
+            </button>
+        </div>
 
-    <div class="btn-group mb-3">
-        <button class="btn btn-outline-primary" [class.active]="selectedRange === '1'" (click)="onRangeChange('1')">
-            รายวัน
-        </button>
-        <button class="btn btn-outline-primary" [class.active]="selectedRange === '2'" (click)="onRangeChange('2')">
-            รายชั่วโมง
-        </button>
+        <div class="d-block d-md-none">
+            <select class="form-select" [(ngModel)]="selectedValue" (change)="onMetricChange()">
+                <option value="temp" selected>อุณหภูมิภายนอก</option>
+                <option value="pm25">PM2.5</option>
+                <option value="pm10">PM1.0</option>
+                <option value="voc">VOCs/AOC</option>
+                <option value="wind">ความเร็วลม</option>
+                <option value="humidity">ความชื้น</option>
+            </select>
+        </div>
     </div>
 
-    <div class="row gy-2">
+    <div class="row gy-2 d-none d-md-flex">
         <div class="col-md-4">
             <div class="card-status d-flex flex-column align-items-center">
                 <span>ค่าสูงสุด</span>

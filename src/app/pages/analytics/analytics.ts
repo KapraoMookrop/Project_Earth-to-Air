@@ -124,8 +124,10 @@ export class Analytics {
     this.IsLoading = false;
   }
 
-  onMetricChange(metric: string) {
-    this.selectedValue = metric;
+  onMetricChange(metric: string | null = null) {
+    if (metric !== null) {
+      this.selectedValue = metric;
+    }
     this.updateChart();
   }
 
