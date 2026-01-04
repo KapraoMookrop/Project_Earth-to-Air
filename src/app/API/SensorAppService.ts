@@ -93,7 +93,7 @@ export class SensorAppService {
 
     async CancelConnectLine(userId: string) {
         const observable = this.http.get(
-            `${this.baseUrl}/api/cancel-line/${userId}`
+            `${this.baseUrl}/api/cancel-connect-line/${userId}`
         );
         const response = await lastValueFrom(observable);
         return response;
