@@ -72,21 +72,20 @@ export class SensorAppService {
         return response;
     }
 
-    ConnectLine(userId: string) {
-        window.location.href =
-            'https://access.line.me/oauth2/v2.1/authorize' +
-            '?response_type=code' +
-            '&client_id=2008812785' +
-            '&redirect_uri=https://project-earth-to-air-server.onrender.com/api/auth/line/callback' +
-            `&state=${userId}` +
-            '&scope=profile%20openid'
+    async ConnectLine(userId: string) {
+        const observable = this.http.get(
+            `${this.baseUrl}/api/auth/line/connect/${userId}`
+        );
+
+        const response = await lastValueFrom(observable);
+        return response;
     }
 
     async SendToLine(userId: string) {
         const observable = this.http.get(
             `${this.baseUrl}/api/send-to-line/${userId}`
         );
-        
+
         const response = await lastValueFrom(observable);
         return response;
     }
