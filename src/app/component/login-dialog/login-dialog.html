@@ -16,7 +16,7 @@
 
         <!-- Username -->
         <div class="col-12">
-          <label class="form-label">Username</label>
+          <label class="form-label">ชื่อผู้ใช้</label>
           <input type="text" class="form-control" required minlength="4" pattern="^[a-zA-Z0-9._-]+$" name="username"
             [(ngModel)]="username">
           <div class="invalid-feedback">
@@ -26,7 +26,7 @@
 
         <!-- Password -->
         <div class="col-12">
-          <label class="form-label">Password</label>
+          <label class="form-label">รหัสผ่าน</label>
           <input type="password" class="form-control" id="password" required minlength="6" name="password"
             [(ngModel)]="password">
           <div class="invalid-feedback">
@@ -39,7 +39,7 @@
 
         <!-- Confirm Password -->
         <div class="col-12">
-          <label class="form-label">Confirm Password</label>
+          <label class="form-label">ยืนยันรหัสผ่าน</label>
           <input type="password" class="form-control" id="confirmPassword" required minlength="6" name="confirmPassword"
             [(ngModel)]="confirmPassword">
           <div class="invalid-feedback">
@@ -50,9 +50,10 @@
 
         <!-- Device ID -->
         <div class="col-12">
-          <label class="form-label">Device Id</label>
+          <label class="form-label">หมายเลขอุปกรณ์</label>
           <input type="text" class="form-control" required pattern="^[a-zA-Z0-9_-]+$" name="deviceId"
             [(ngModel)]="deviceId">
+          <span class="text-danger fs-small">* หากต้องการดูข้อมูลตัวอย่างให้ใช้ esp32_001</span>
           <div class="invalid-feedback">
             กรุณากรอก Device ID
           </div>
