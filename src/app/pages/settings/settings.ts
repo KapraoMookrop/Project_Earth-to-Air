@@ -142,10 +142,10 @@ export class Settings {
 
   async CancelConnectLine() {
     this.IsLoading = true;
-    localStorage.setItem('is_connected_line', 'false');
-    this.isConnectedLine = false;
     try {
       const result = await this.sensorAppService.CancelConnectLine(this.user_id!);
+      localStorage.setItem('is_connected_line', 'false');
+      this.isConnectedLine = false;
       Swal.fire({
         icon: 'success',
         title: 'ยกเลิกการเชื่อมต่อ LINE สำเร็จ',
