@@ -73,12 +73,10 @@ export class SensorAppService {
     }
 
     async ConnectLine(userId: string) {
-        const observable = this.http.get(
-            `${this.baseUrl}/api/auth/line/connect/${userId}`
+        window.open(
+            `${this.baseUrl}/api/auth/line/connect/${userId}`,
+            '_blank'
         );
-
-        const response = await lastValueFrom(observable);
-        return response;
     }
 
     async SendToLine(userId: string) {
