@@ -73,7 +73,9 @@ export class Settings {
     localStorage.removeItem('username');
     localStorage.removeItem('deviceId');
     localStorage.removeItem('is_connected_line');
+    this.user_id = undefined;
     this.username = undefined;
+    this.deviceId = undefined;
     this.isConnectedLine = false;
   }
 
