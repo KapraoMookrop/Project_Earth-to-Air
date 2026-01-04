@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { SensorData } from '../types/SensorDate';
 import { SettingsData } from '../types/SettingsData';
 import { ConfigurationData } from '../types/configurationData';
+import { UserData } from '../types/UserData';
 
 @Injectable({
     providedIn: 'root'
@@ -50,4 +51,43 @@ export class SensorAppService {
         const response = await lastValueFrom(observable);
         return response;
     }
+
+    async Login(UserData: UserData): Promise<UserData> {
+
+        const observable = this.http.post<UserData>(
+            `${this.baseUrl}/api/login`, UserData
+        );
+
+        const response = await lastValueFrom(observable);
+        return response;
+    }
+
+    async Signup(UserData: UserData): Promise<UserData> {
+
+        const observable = this.http.post<UserData>(
+            `${this.baseUrl}/api/signup`, UserData
+        );
+
+        const response = await lastValueFrom(observable);
+        return response;
+    }
+
+    // async ConnectLine(): Promise<void> {
+    //     const observable = this.http.get(
+    //         `${this.baseUrl}/api/auth/line`,
+    //     );
+
+    //     const response = await lastValueFrom(observable);
+    // }
+
+    ConnectLine(userId: string) {
+        window.location.href =
+            'https://access.line.me/oauth2/v2.1/authorize' +
+            '?response_type=code' +
+            '&client_id=2008812785' +
+            '&redirect_uri=https://project-earth-to-air-server.onrender.com/api/auth/line/callback' +
+            `&state=${userId}` +
+            '&scope=profile%20openid'
+    }
+
 }

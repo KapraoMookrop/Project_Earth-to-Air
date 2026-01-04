@@ -303,7 +303,7 @@ nav {
     font-size: 36px !important;
   }
   .fs-status-small {
-    font-size: 24px !important;
+    font-size: 18px !important;
   }
   .fs-header {
     font-size: 16px !important;
@@ -337,6 +337,26 @@ nav {
   }
 }
 
+.custom-card{
+  border-radius: 12px;
+  padding: 0;
+  border: 1px solid var(--bg-light);
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  overflow: hidden;
+}
+
+.custom-card .header{
+  background-color: #e4e9ed;
+  padding: 12px 16px;
+}
+
+.custom-card .body{
+  padding: 12px 16px;
+}
+
 .card-status {
   border-radius: 12px;
   padding: 25px 15px;
@@ -346,6 +366,7 @@ nav {
   transition: all 0.3s ease;
   height: 100%;
 }
+
 
 .card-status:hover {
   border-color: var(--primary-blue);
@@ -521,3 +542,4 @@ nav {
   font-size: 18px;
   animation: spin 1.2s linear infinite;
 }
+

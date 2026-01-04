@@ -1,0 +1,74 @@
+@if(IsLoading){
+<div class="modal-loading">
+  <div class="loader"></div>
+</div>
+}
+<div class="dialog-backdrop" (click)="onClose()" [class.active]="visible"></div>
+<div class="dialog" [class.active]="visible">
+  <div class="dialog-content">
+    <div class="dialog-header">
+      <span class="fs-header">{{ title }}</span>
+      <button class="btn-close" (click)="onClose()"></button>
+    </div>
+
+    <div class="dialog-body">
+      <form class="needs-validation row g-3" novalidate (submit)="onSubmit($event)">
+
+        <!-- Username -->
+        <div class="col-12">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control" required minlength="4" pattern="^[a-zA-Z0-9._-]+$" name="username"
+            [(ngModel)]="username">
+          <div class="invalid-feedback">
+            กรุณากรอก Username (อย่างน้อย 4 ตัวอักษร)
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="col-12">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" required minlength="6" name="password"
+            [(ngModel)]="password">
+          <div class="invalid-feedback">
+            กรุณากรอกรหัสผ่านอย่างน้อย 6 ตัว
+          </div>
+        </div>
+
+
+        @if(type === 'signup') {
+
+        <!-- Confirm Password -->
+        <div class="col-12">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" required minlength="6" name="confirmPassword"
+            [(ngModel)]="confirmPassword">
+          <div class="invalid-feedback">
+            รหัสผ่านไม่ตรงกัน
+          </div>
+        </div>
+
+
+        <!-- Device ID -->
+        <div class="col-12">
+          <label class="form-label">Device Id</label>
+          <input type="text" class="form-control" required pattern="^[a-zA-Z0-9_-]+$" name="deviceId"
+            [(ngModel)]="deviceId">
+          <div class="invalid-feedback">
+            กรุณากรอก Device ID
+          </div>
+        </div>
+
+        }
+
+        <!-- Submit -->
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100">
+            {{ type === 'login' ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก' }}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

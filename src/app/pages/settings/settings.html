@@ -1,1 +1,128 @@
-<h1>Setting</h1>
+@if(!IsLoading){
+<div class="custom-card my-2 fs-status-small">
+    <div class="header">
+        <div class="d-flex align-items-center gap-1">
+            <i class="fa-brands fa-line" style="color: #00B900 ;"></i>
+            การแจ้งเตือนผ่าน Line
+        </div>
+    </div>
+    <div class="body fs-title">
+        <div class="row my-2 align-items-center">
+            <div class="col-6 fs-title">
+                <div>
+                    สถานะการเชื่อมต่อ
+                </div>
+                @if(isConnectedLine){
+                <i class="fa-solid fa-circle text-success me-1"></i>
+                <span class="text-success">เชื่อมต่อแล้ว</span>
+                }@else {
+                <i class="fa-solid fa-circle text-danger me-1"></i>
+                <span class="text-danger">ยังไม่เชื่อมต่อ</span>
+                }
+            </div>
+            <div class="col-6 text-end">
+                @if(isConnectedLine){
+                <button class="btn btn-outline-success btn-sm d-md-none">
+                    <i class="fa-regular fa-paper-plane"></i>
+                    ส่งข้อมูลล่าสุดไปยังไปยังไลน์
+                </button>
+                <button class="btn btn-outline-success btn-sm d-none d-md-inline">
+                    <i class="fa-regular fa-paper-plane"></i>
+                    ส่งข้อมูลล่าสุดไปยังไปยังไลน์
+                </button>
+                }@else {
+                <button class="btn btn-outline-success btn-sm d-md-none" (click)="ConnectLine()">
+                    <i class="fa-solid fa-link"></i>
+                    เชื่อมต่อกับไลน์
+                </button>
+                <button class="btn btn-outline-success d-none d-md-inline" (click)="ConnectLine()">
+                    <i class="fa-solid fa-link"></i>
+                    เชื่อมต่อกับไลน์
+                </button>
+                }
+            </div>
+        </div>
+        <div class="row my-2 align-items-start">
+            <span class="fs-title col-md-6">แจ้งเตือนเมื่อสุขภาพไส้กรองเหลือ</span>
+            <div class="col-md-6">
+                <div class="text-end">
+                    <input type="number" class="form-control w-25 d-inline-block" min="0" max="100"
+                        [(ngModel)]="SettingData.filter_alert_threshold" [disabled]="!isConnectedLine"> %
+                </div>
+                <div>
+                    <input type="range" class="form-range" min="0" max="100"
+                        [(ngModel)]="SettingData.filter_alert_threshold" [disabled]="!isConnectedLine">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            0%
+                        </div>
+                        <div>
+                            50%
+                        </div>
+                        <div>
+                            100%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-card my-2 fs-status-small">
+    <div class="header">
+        <div class="d-flex align-items-center gap-1">
+            <i class="fa-solid fa-recycle"></i>
+            การบำรุงรักษาไส้กรอง
+        </div>
+    </div>
+    <div class="body fs-title">
+        <div class="row my-2 align-items-center">
+            <div class="fs-title col-8">
+                <div class="fw-bold">
+                    รีเซ็ตอายุการใช้งานไส้กรอง
+                </div>
+                <div>
+                    กดรีเซ็ตหลังจากทำการเปลี่ยนไส้กรองใหม่เรียบร้อยแล้ว
+                </div>
+            </div>
+            <div class="col-4 text-end">
+                <button class="btn btn-outline-success btn-sm d-md-none">
+                    Reset Filter
+                </button>
+                <button class="btn btn-outline-success d-none d-md-inline">
+                    Reset Filter
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+}@else {
+<div class="modal-loading">
+    <div class="loader"></div>
+</div>
+}
+
+<div class="d-flex gap-2 justify-content-end my-2">
+    @if(!username){
+    <button class="btn btn-outline-success" (click)="openLogin()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        เข้าสู่ระบบ
+    </button>
+    <button class="btn btn-outline-primary" (click)="openSignup()">
+        <i class="fa-solid fa-user-plus"></i>
+        สมัครสมาชิก
+    </button>
+    }@else {
+    <button class="btn btn-outline-danger" (click)="logOut()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        ออกจากระบบ
+    </button>
+    }
+</div>
+
+<app-login-dialog [visible]="dialogLoginVisible" [title]="'เข้าสู่ระบบ'" [type]="'login'" (close)="closeLogin()">
+</app-login-dialog>
+
+<app-login-dialog [visible]="dialogSignupVisible" [title]="'สมัครสมาชิก'" [type]="'signup'" (close)="closeSignup()">
+</app-login-dialog>

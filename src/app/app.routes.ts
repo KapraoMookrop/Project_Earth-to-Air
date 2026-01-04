@@ -8,4 +8,5 @@ export const routes: Routes = [
     { path: 'dashboard', component: Dashboard },
     { path: 'analytics', component: Analytics },
     { path: 'settings', component: Settings },
+    { path: 'settings/:line', component: Settings }
 ];
