@@ -125,6 +125,12 @@
         ออกจากระบบ
     </button>
     }
+    @if(isConnectedLine){
+    <button class="btn btn-outline-danger" (click)="CancelConnectLine()">
+        <i class="fa-solid fa-ban"></i>
+        ยกเลิกการเชื่อมต่อไลน์
+    </button>
+    }
 </div>
 
 <app-login-dialog [visible]="dialogLoginVisible" [title]="'เข้าสู่ระบบ'" [type]="'login'" (close)="closeLogin()">

@@ -139,5 +139,28 @@ export class Settings {
       this.IsLoading = false;
     }
   }
+
+  async CancelConnectLine() {
+    this.IsLoading = true;
+    localStorage.setItem('is_connected_line', 'false');
+    this.isConnectedLine = false;
+    try {
+      const result = await this.sensorAppService.CancelConnectLine(this.user_id!);
+      Swal.fire({
+        icon: 'success',
+        title: 'ยกเลิกการเชื่อมต่อ LINE สำเร็จ',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    } catch (err: HttpErrorResponse | any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: err.error?.error || 'เกิดข้อผิดพลาดในการยกเลิกการเชื่อมต่อกับไลน์',
+      });
+    } finally {
+      this.IsLoading = false;
+    }
+  }
 }
 
