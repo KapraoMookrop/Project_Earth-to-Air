@@ -116,5 +116,26 @@ export class Settings {
       this.IsLoading = false;
     }
   }
+
+  async SendToLine() {
+    this.IsLoading = true;
+    try {
+      const result = await this.sensorAppService.SendToLine(this.user_id!);
+      Swal.fire({
+        icon: 'success',
+        title: 'ส่งข้อมูลไปยังไลน์สำเร็จ',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    } catch (err: HttpErrorResponse | any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'เกิดข้อผิดพลาด',
+        text: err.error?.error || 'เกิดข้อผิดพลาดในการส่งข้อมูลไปยังไลน์',
+      });
+    } finally {
+      this.IsLoading = false;
+    }
+  }
 }
 

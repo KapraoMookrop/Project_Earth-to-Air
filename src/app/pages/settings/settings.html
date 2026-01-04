@@ -22,11 +22,11 @@
             </div>
             <div class="col-6 text-end">
                 @if(isConnectedLine){
-                <button class="btn btn-outline-success btn-sm d-md-none">
+                <button class="btn btn-outline-success btn-sm d-md-none" (click)="SendToLine()">
                     <i class="fa-regular fa-paper-plane"></i>
                     ส่งข้อมูลล่าสุดไปยังไปยังไลน์
                 </button>
-                <button class="btn btn-outline-success btn-sm d-none d-md-inline">
+                <button class="btn btn-outline-success btn-sm d-none d-md-inline" (click)="SendToLine()">
                     <i class="fa-regular fa-paper-plane"></i>
                     ส่งข้อมูลล่าสุดไปยังไปยังไลน์
                 </button>
