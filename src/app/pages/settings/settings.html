@@ -1,4 +1,11 @@
 @if(!IsLoading){
+@if(username){
+<div class="fs-header my-2">
+    <span>
+        สวัสดี, {{username ? username : 'คุณยังไม่ได้เข้าสู่ระบบ'}}!
+    </span>
+</div>
+}
 <div class="custom-card my-2 fs-status-small">
     <div class="header">
         <div class="d-flex align-items-center gap-1">
