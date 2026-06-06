@@ -11,7 +11,7 @@ import { UserData } from '../types/UserData';
 })
 export class SensorAppService {
 
-    private baseUrl = 'https://project-earth-to-air-server.onrender.com';
+    private baseUrl = 'https://project-earth-to-air-server.vercel.app';
 
     constructor(private http: HttpClient) { }
 
